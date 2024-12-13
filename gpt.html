@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Replica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .messages {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .messages div {
+            margin: 10px 0;
+        }
+        .user-message {
+            text-align: right;
+            color: #fff;
+            background: #007bff;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+        .bot-message {
+            text-align: left;
+            color: #000;
+            background: #e4e4e4;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+        .input-container {
+            display: flex;
+            margin-top: 20px;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-container button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-container button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const messagesContainer = document.getElementById('messages');
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === '') return;
+
+            addMessage(userInput, 'user-message');
+            document.getElementById('user-input').value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(userInput);
+                addMessage(botResponse, 'bot-message');
+            }, 1000);
+        }
+
+        function addMessage(text, className) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = className;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getBotResponse(userInput) {
+            // Basic logic for bot response
+            if (userInput.toLowerCase().includes('hello')) {
+                return 'Hi there! How can I assist you?';
+            } else if (userInput.toLowerCase().includes('bye')) {
+                return 'Goodbye! Have a great day!';
+            } else {
+                return 'I am just a simple bot! Ask me something else.';
+            }
+        }
+    </script>
+     <a href="./gpt.html">for GPT</a>
+     <a href="./index.html">for MAIN PAGE</a>
+     <a href="./wekipedia.html">for WEKIPEDIA</a>
+</body>
+</html>
